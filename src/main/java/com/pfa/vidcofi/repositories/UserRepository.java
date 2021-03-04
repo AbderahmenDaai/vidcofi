@@ -3,7 +3,11 @@ package com.pfa.vidcofi.repositories;
 import com.pfa.vidcofi.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
+
 public interface UserRepository extends MongoRepository<User, String> {
 
-    User findByEmail(String email);
+    List<User> findByEmail(String email);
+
+
 }

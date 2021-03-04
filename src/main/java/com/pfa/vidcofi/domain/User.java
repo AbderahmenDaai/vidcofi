@@ -21,6 +21,19 @@ public class User {
     @DBRef
     private Set<Role> roles;
 
+
+    public User() {
+
+    }
+
+    public User(Set<Role> roles, String email, String password, String fullname, boolean enabled) {
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
+
     public String getId() {
         return id;
     }

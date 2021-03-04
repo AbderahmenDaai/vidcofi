@@ -28,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public User findUserByEmail(String email) {
+    public List<User> findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
@@ -43,10 +43,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = userRepository.findByEmail(email);
+        List<User> user = userRepository.findByEmail(email);
         if (user != null) {
-            List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-            return buildUserForAuthentication(user, authorities);
+            List<GrantedAuthority> authorities = getUserAuthority(user.get(0).getRoles());
+            return buildUserForAuthentication(user.get(0), authorities);
         } else {
             throw new UsernameNotFoundException("username not found");
         }

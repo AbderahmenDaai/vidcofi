@@ -8,11 +8,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "role")
 public class Role {
 
+    public Role(String id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
     @Id
     private String id;
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
 
     private String role;
+
+    public Role() {
+
+    }
+
 
     public String getId() {
         return id;
